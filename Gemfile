@@ -27,11 +27,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :test do
   gem 'guard-rspec'
+  gem 'capybara'
 end
 
 group :development do
@@ -52,4 +53,3 @@ gem 'bcrypt'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
