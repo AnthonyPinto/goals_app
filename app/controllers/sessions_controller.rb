@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_credentials(user_params)
+    @user = User.find_by_credentials(user_params[:username], user_params[:password])
     
     if @user
       # success
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     
   end
 
-  def delete
+  def destroy
     current_user.reset_session_token!
     session[:session_token] = nil
     redirect_to new_session_url
