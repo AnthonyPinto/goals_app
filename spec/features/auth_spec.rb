@@ -21,16 +21,29 @@ end
 
 feature "logging in" do 
 
-  it "shows username on the homepage after login"
+  it "shows username on the homepage after login" do
+    sign_up
+    sign_out
+    sign_in # ("Dave")
+    expect(page).to have_content("Dave")
+  end
+    
 
 end
 
 
 feature "logging out" do 
 
-  it "begins with logged out state"
+  it "begins with logged out state" do
+    # TODO: better test
+    expect(page).not_to have_content("Dave")
+  end
 
-  it "doesn't show username on the homepage after logout"
+  it "doesn't show username on the homepage after logout" do
+    sign_up
+    sign_out
+    expect(page).not_to have_content("Dave")
+  end
 
 end
 
