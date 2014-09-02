@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :password, length: {minimum: 6, allow_nil: true}
   
+  has_many(
+  :goals,
+  class_name: 'Goal',
+  foreign_key: :user_id,
+  primary_key: :id,
+  dependent: :destroy
+  )
+  
   def self.new_session_token
     SecureRandom.urlsafe_base64
   end
