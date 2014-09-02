@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    render :show
+    @commentable_type = "User"
   end
   
   def new

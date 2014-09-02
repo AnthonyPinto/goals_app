@@ -1,0 +1,33 @@
+<% if @commentable_type == "Goal" %>
+  <form action='<%= goal_comments_url(@comment) %>' method='post'>
+    <input 
+      type='hidden'
+      name='comment[commentable_id]'
+      value="<%= @goal.id %>"
+      >
+<% elsif @commentable_type == "User" %>
+  <form action='<%= user_comments_url(@user) %>' method='post'>
+    <input 
+      type='hidden'
+      name='comment[commentable_id]'
+      value="<%= @user.id %>"
+      >
+<% end %>
+
+  <%= auth_token %>
+  
+  <input 
+    type='hidden'
+    name='comment[commentable_type]'
+    value="<%= @commentable_type %>"
+    >
+
+  <label for='comment_body'>Comment: </label>
+  <input
+    type='text'
+    id='comment_body'
+    name='comment[body]' %> 
+
+  <input type='submit' value='Submit!'>
+  
+</form>

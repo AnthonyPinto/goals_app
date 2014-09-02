@@ -6,11 +6,23 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6, allow_nil: true}
   
   has_many(
-  :goals,
-  class_name: 'Goal',
-  foreign_key: :user_id,
-  primary_key: :id,
-  dependent: :destroy
+    :goals,
+    class_name: 'Goal',
+    foreign_key: :user_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
+  
+  has_many(
+  :authored_comments,
+  class_name: 'Comment',
+  foreign_key: :author_id,
+  primary_key: :id
+  )
+  
+  has_many(
+    :comments,
+    :as => :commentable
   )
   
   def self.new_session_token
